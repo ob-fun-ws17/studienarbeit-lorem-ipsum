@@ -12,10 +12,10 @@ module Lib where
     alphabet = M.fromList[('A', M.fromList[('A', 0)])]
 
     initOccurences :: Occurences
-    initOccurences = foldr(uncurry M.insert) M.empty $ zip ['A', 'B'..'Z'] $ repeat 0
+    initOccurences = foldr(uncurry M.insert) M.empty $ zip ['A'..'Z'] $ repeat 0
 
     initAlphabet :: Alphabet
-    initAlphabet = foldr(uncurry M.insert) M.empty $ zip ['A', 'B'..'Z'] $ repeat initOccurences
+    initAlphabet = foldr(uncurry M.insert) M.empty $ zip ['A'..'Z'] $ repeat initOccurences
 
     openFile :: String -> IO ()
     openFile fileName = withFile "LoremIpsum.txt" ReadMode $ \handle -> do
