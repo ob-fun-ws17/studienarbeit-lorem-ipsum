@@ -8,13 +8,14 @@ module Lib where
     type Letter        = Char
     type Alphabet      = M.Map Letter Occurences
 
+    occurences = initOccurences
     alphabet = initAlphabet
 
     initOccurences :: Occurences
     initOccurences = foldr(uncurry M.insert) M.empty $ zip ['A'..'Z'] $ repeat 0
 
     initAlphabet :: Alphabet
-    initAlphabet = foldr(uncurry M.insert) M.empty $ zip ['A'..'Z'] $ repeat initOccurences
+    initAlphabet = foldr(uncurry M.insert) M.empty $ zip ['A'..'Z'] $ repeat occurences
 
     openFile :: String -> IO ()
     openFile fileName = withFile "LoremIpsum.txt" ReadMode $ \handle -> do
