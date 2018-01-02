@@ -22,6 +22,8 @@ module Lib where
     openFile fileName = do
       content <- readFile "LoremIpsum.txt" --fileName
       printXs (charToString(content!!1))
+      let chars = readChars 1 content initAlphabet
+      printXs "tmp"
       --putStr content
 
     --openFile :: String -> IO ()
@@ -29,6 +31,9 @@ module Lib where
                   --xs <- getlines handle
                   --printXs xs
                   --sequence_ $ map putStrLn xs
+
+    readChars :: Int -> String -> Alphabet-> Occurences
+    readChars index content alph = incrementOccurences (content!!index) (content!!(index+1)) alph
 
     charToString :: Char -> String
     charToString c = [c]
