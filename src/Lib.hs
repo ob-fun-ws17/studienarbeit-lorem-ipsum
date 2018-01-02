@@ -28,17 +28,17 @@ module Lib where
     getLength :: String -> Int
     getLength s = length s
 
-    getOccurence :: Key -> Integer
-    getOccurence x = (M.findWithDefault 0 x occurences)
+    getOccurence :: Key -> Occurences -> Integer
+    getOccurence x y = M.findWithDefault 0 x y
 
-    getParamtersOfKey :: Key -> Occurences
-    getParamtersOfKey x = M.findWithDefault occurences x alphabet
+    getOccurences :: Key -> Alphabet -> Occurences
+    getOccurences x y = M.findWithDefault occurences x y
+
+    incrementOccurences :: Char -> Char -> Alphabet -> Occurences
+    incrementOccurences x y z = M.insert x ((getOccurence x (getOccurences y z)) + 1) (getOccurences y z)
+
+    --incrementOccurences :: Char -> Occurences
+    --incrementOccurences x = M.insert x ((getOccurence x) + 1) occurences
 
     --getAlphabet :: Key -> [Integer]
     --getAlphabet x = map M.findWithDefault 0 x occurences
-
-    -- incrementOccurences :: Char -> Occurences -> Occurences
-    -- incrementOccurences x y = M.insert x ((getOccurence x) + 1) y
-
-    incrementOccurences :: Char -> Occurences
-    incrementOccurences x = M.insert x ((getOccurence x) + 1) occurences

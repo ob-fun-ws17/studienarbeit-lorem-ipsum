@@ -10,3 +10,8 @@ main = do
   openFile fileName
   putStrLn (" Die Datei " ++ fileName ++ " soll geoeffnet werden.")
 --  hSetBuffering stdout NoBuffering
+
+mainA :: Occurences
+mainA = do
+  let alphabet = initAlphabet
+  incrementOccurences 'A' 'A' alphabet
