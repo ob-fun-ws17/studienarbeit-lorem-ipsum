@@ -1,5 +1,6 @@
 module Lib where
 
+--    import Data.Array
     import System.IO
     import qualified Data.Map.Strict as M
 
@@ -18,9 +19,22 @@ module Lib where
     initAlphabet = foldr(uncurry M.insert) M.empty $ zip ['A'..'Z'] $ repeat initOccurences
 
     openFile :: String -> IO ()
-    openFile fileName = withFile "LoremIpsum.txt" ReadMode $ \handle -> do
-                  xs <- getlines handle
-                  sequence_ $ map putStrLn xs
+    openFile fileName = do
+      content <- readFile "LoremIpsum.txt" --fileName
+      printXs (charToString(content!!1))
+      --putStr content
+
+    --openFile :: String -> IO ()
+    --openFile fileName = withFile "LoremIpsum.txt" ReadMode $ \handle -> do
+                  --xs <- getlines handle
+                  --printXs xs
+                  --sequence_ $ map putStrLn xs
+
+    charToString :: Char -> String
+    charToString c = [c]
+
+    printXs :: String -> IO()
+    printXs xs = do putStrLn xs
 
     getlines :: Handle -> IO [String]
     getlines h = hGetContents h >>= return . lines
@@ -34,8 +48,11 @@ module Lib where
     getOccurences :: Key -> Alphabet -> Occurences
     getOccurences x y = M.findWithDefault occurences x y
 
-    incrementOccurences :: Char -> Char -> Alphabet -> Occurences
+    incrementOccurences :: Key -> Key -> Alphabet -> Occurences
     incrementOccurences x y z = M.insert x ((getOccurence x (getOccurences y z)) + 1) (getOccurences y z)
+
+    -- analyseText :: Alphabet
+    -- analyseText alph =
 
     --incrementOccurences :: Char -> Occurences
     --incrementOccurences x = M.insert x ((getOccurence x) + 1) occurences

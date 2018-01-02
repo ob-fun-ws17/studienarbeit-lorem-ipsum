@@ -2,6 +2,8 @@ module Main where
 
 import Lib
 
+
+--import Data.Array.IO
 import System.IO (hSetBuffering, BufferMode(NoBuffering), stdout)
 main :: IO ()
 main = do
