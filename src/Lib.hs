@@ -3,6 +3,7 @@ module Lib where
 --    import Data.Array
     import System.IO
     import qualified Data.Map.Strict as M
+    import Data.Char
 
     type Key           = Char
     type Occurences    = M.Map Key Integer
@@ -22,7 +23,8 @@ module Lib where
     openFile fileName = do
       content <- readFile "LoremIpsum.txt" --fileName
       printXs (charToString(content!!1))
-      let chars = readChars 1 content initAlphabet
+      let content' = map toUpper $ filter isAlpha content
+      let chars = readChars 0 content' initAlphabet
       printXs "tmp"
       --putStr content
 
@@ -41,20 +43,17 @@ module Lib where
     printXs :: String -> IO()
     printXs xs = do putStrLn xs
 
-    getlines :: Handle -> IO [String]
-    getlines h = hGetContents h >>= return . lines
-
-    getLength :: String -> Int
-    getLength s = length s
+    --getlines :: Handle -> IO [String]
+    --getlines h = hGetContents h >>= return . lines
 
     getOccurence :: Key -> Occurences -> Integer
-    getOccurence x y = M.findWithDefault 0 x y
+    getOccurence key occ = M.findWithDefault 0 key occ
 
     getOccurences :: Key -> Alphabet -> Occurences
-    getOccurences x y = M.findWithDefault occurences x y
+    getOccurences key alph = M.findWithDefault occurences key alph
 
     incrementOccurences :: Key -> Key -> Alphabet -> Occurences
-    incrementOccurences x y z = M.insert x ((getOccurence x (getOccurences y z)) + 1) (getOccurences y z)
+    incrementOccurences key1 key2 alph = M.insert key1 ((getOccurence key1 (getOccurences key2 alph)) + 1) (getOccurences key2 alph)
 
     -- analyseText :: Alphabet
     -- analyseText alph =
