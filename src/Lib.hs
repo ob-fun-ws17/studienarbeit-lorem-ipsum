@@ -27,7 +27,7 @@ module Lib where
     lookup x zs = (head [b | (a,b) <- zs, (a==x)])
 
     getCharCountValue :: Char -> [(Char, Int)] -> Int
-    getCharCountValue key  freqList = 5
+    getCharCountValue key  freqList = Lib.lookup key freqList
 
     swapTupleValues :: ((Char, Char), Int) -> (Char, (Char, Int))
     swapTupleValues ((a, b), c) = (a, (b, c))
@@ -51,7 +51,7 @@ module Lib where
       let swapped = map swapTupleValues grouped
       let changed = map (changeIntTupleToFloat charCounts) (swapped)
 
-      print swapped
+      print changed
 
     readChars :: Int -> String -> Alphabet-> Occurences
     readChars index content alph = incrementOccurences (content!!index) (content!!(index+1)) alph
