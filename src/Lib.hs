@@ -41,6 +41,9 @@ module Lib where
     printFloatTuple :: (Char, (Char, Float)) -> String
     printFloatTuple (a, (b, c)) = charToString a ++ " " ++ charToString b ++ " " ++ show c
 
+    groupTupleLists :: [(Char, (Char, Float))] -> [[(Char, (Char, Float))]]
+    groupTupleLists list = groupBy (\a b -> fst a == fst b) list
+
     openFile :: String -> IO ()
     openFile fileName = do
       content <- readFile "LoremIpsum.txt"
@@ -50,8 +53,9 @@ module Lib where
       let grouped = frequency zipped
       let swapped = map swapTupleValues grouped
       let changed = map (changeIntTupleToFloat charCounts) (swapped)
+      let groupedTuples = groupTupleLists changed
 
-      print changed
+      print groupedTuples
 
     readChars :: Int -> String -> Alphabet-> Occurences
     readChars index content alph = incrementOccurences (content!!index) (content!!(index+1)) alph
