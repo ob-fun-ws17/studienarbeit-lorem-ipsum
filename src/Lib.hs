@@ -44,6 +44,20 @@ module Lib where
     groupTupleLists :: [(Char, (Char, Float))] -> [[(Char, (Char, Float))]]
     groupTupleLists list = groupBy (\a b -> fst a == fst b) list
 
+    kummulate :: [(Char, Float)] -> [(Char, Float)]
+    kummulate xs = do
+      let headXs = head xs
+      let tailXs = tail xs
+      if length xs <= 1
+      then xs
+      else headXs : kummulate((kummulateAddNumber (head tailXs) (snd headXs)) : tail tailXs)
+
+    kummulateAddNumber :: (Char, Float) -> Float -> (Char, Float)
+    kummulateAddNumber tup num = (fst tup, snd tup + num)
+
+--    kummulatesLittleHelper :: [(Char, (Char, Float))] -> [([Char], [(Char, Float)])]
+--    kummulatesLittleHelper xs = transpose xs
+
     openFile :: String -> IO ()
     openFile fileName = do
       content <- readFile "LoremIpsum.txt"
@@ -54,7 +68,8 @@ module Lib where
       let swapped = map swapTupleValues grouped
       let changed = map (changeIntTupleToFloat charCounts) (swapped)
       let groupedTuples = groupTupleLists changed
-
+      --let allAdded = map kummulate groupedTuples
+      --print allAdded
       print groupedTuples
 
     readChars :: Int -> String -> Alphabet-> Occurences
