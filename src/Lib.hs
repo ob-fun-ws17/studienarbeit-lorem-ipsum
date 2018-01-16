@@ -32,8 +32,8 @@ module Lib where
     swapTupleValues :: ((Char, Char), Int) -> (Char, (Char, Int))
     swapTupleValues ((a, b), c) = (a, (b, c))
 
-    changeIntTuple :: (Char,(Char, Int)) -> [(Char, Int)] -> (Char,(Char, Float))
-    changeIntTuple (a, (b, c)) freqList = (a,(b, (fromIntegral c) / (fromIntegral (getCharCountValue a freqList))))
+    changeIntTupleToFloat :: [(Char, Int)] -> (Char,(Char, Int)) -> (Char,(Char, Float))
+    changeIntTupleToFloat freqList (a, (b, c)) = (a,(b, (fromIntegral c) / (fromIntegral (getCharCountValue a freqList))))
 
     countLetters :: String -> Char -> Int
     countLetters str c = length $ filter (== c) str
@@ -49,8 +49,9 @@ module Lib where
       let zipped = zip content' $ tail content'
       let grouped = frequency zipped
       let swapped = map swapTupleValues grouped
+      let changed = map (changeIntTupleToFloat charCounts) (swapped)
 
-      print grouped
+      print swapped
 
     readChars :: Int -> String -> Alphabet-> Occurences
     readChars index content alph = incrementOccurences (content!!index) (content!!(index+1)) alph
