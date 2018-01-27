@@ -98,7 +98,7 @@ module Lib where
       let changed = map (changeIntTupleToFloat charCounts) (swapped)
       let groupedTuples = groupTupleLists changed
       let optimizedList = optimizeList groupedTuples
-      generateText 1000 'E' optimizedList
+      generateText "" 1000 'E' optimizedList
 
       return ()
 
@@ -142,8 +142,8 @@ module Lib where
       let originalListe = list
       fmap makeCharTupleListTuple originalListe
 
-    generateText :: Int -> Char -> [(Char, [(Char, Float)])] -> IO ()
-    generateText count start dat = do
+    generateText :: String -> Int -> Char -> [(Char, [(Char, Float)])] -> IO ()
+    generateText result count start dat = do
       let ganzcharTupleListTuple = (filter (\tup -> fst tup == start) dat)!!0
       ranNum <- getRandomNumberOneTo
       let limit = ((fromIntegral ranNum) / 1000)
@@ -159,10 +159,8 @@ module Lib where
 
       if (count > 0)
         then do
-          print konkreterCharakter
-          --print dat
-          (generateText (count-1) konkreterCharakter dat)
-        else print ""
+          (generateText (result ++ [konkreterCharakter]) (count-1) konkreterCharakter dat)
+        else print result
 
 
       --if count <= 0
