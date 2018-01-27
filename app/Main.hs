@@ -9,7 +9,8 @@ main :: IO ()
 main = do
   putStr "Geben Sie bitte einen Dateinamen an: "
   fileName <- getLine
-  openFile fileName
+  content <- openFile fileName
+  print content
   putStrLn (" Die Datei " ++ fileName ++ " soll geoeffnet werden.")
 --  hSetBuffering stdout NoBuffering
 
@@ -40,10 +41,6 @@ mainTestGetTuple = do
 
   let emptyLine = "\n" ++ "\n"
 
---  let a = [('A', ('P', 1.0)), ('A', ('A', 7.0)), ('A', ('C', 23.0)), ('A', ('H', 29.0))]
---  let b = [('B', ('T', 2.0)), ('B', ('M', 5.0)), ('B', ('I', 19.0)), ('B', ('C', 23.0))]
---  let c = [('C', ('Z', 2.0)), ('C', ('P', 3.0)), ('C', ('K', 11.0)), ('C', ('N', 13.0))]
-
   let a = [('A', ('P',0.199)), ('A', ('K',0.399)), ('A', ('A',0.656)), ('A', ('C',0.682)), ('A', ('H',1.0))]
   let b = [('B', ('T',0.101)), ('B', ('R',0.211)), ('B', ('M',0.392)), ('B', ('I',0.787)), ('B', ('C',1.0))]
   let c = [('C', ('Z',0.115)), ('B', ('Z',0.315)), ('C', ('P',0.667)), ('C', ('K',0.677)), ('C', ('N',1.0))]
@@ -52,6 +49,9 @@ mainTestGetTuple = do
 
   print "----- Beginn der Zauberei -------------------"
 
+  --let originalListe = [a,b,c]
+  originalListe <- openFile ""
+  print originalListe
   let originalListe = [a,b,c]
   putStr emptyLine
   print "OriginalListe - Die Liste im Original"

@@ -82,7 +82,7 @@ module Lib where
 --    kummulatesLittleHelper :: [[(Char, (Char, Float))]] -> [(Char, Float)]
 --    kummulatesLittleHelper [[(key1, (key2, flo))]] = [(key2, flo)]
 
-    openFile :: String -> IO ()
+    --openFile :: String -> [[(Char, (Char, Float))]]
     openFile fileName = do
       content <- readFile "LoremIpsum.txt"
       let content' = map toUpper $ filter isAlpha content
@@ -95,7 +95,8 @@ module Lib where
 
       --let allAdded = map kummulate groupedTuples
       --print allAdded
-      print groupedTuples
+      --print groupedTuples
+      return (Just groupedTuples)
 
     readChars :: Int -> String -> Alphabet-> Occurences
     readChars index content alph = incrementOccurences (content!!index) (content!!(index+1)) alph
