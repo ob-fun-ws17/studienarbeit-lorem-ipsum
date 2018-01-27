@@ -6,6 +6,8 @@ module Lib where
     import Data.List
     import Data.Function
 
+    import System.Random
+
     type Key           = Char
     type Occurences    = M.Map Key Integer
     type Letter        = Char
@@ -55,8 +57,30 @@ module Lib where
     kummulateAddNumber :: (Char, Float) -> Float -> (Char, Float)
     kummulateAddNumber tup num = (fst tup, snd tup + num)
 
---    kummulatesLittleHelper :: [(Char, (Char, Float))] -> [([Char], [(Char, Float)])]
---    kummulatesLittleHelper xs = transpose xs
+    separate :: [[(Char, (Char, Float))]] -> Char
+    separate xs = do
+      if length xs <= 1 then
+        getKeyOfTuple $ head xs
+      else
+        separate $ tail xs
+
+    getKeyOfTuple :: [(Char, (Char, Float))] -> Char
+    getKeyOfTuple xs = fst (xs!!0)
+
+    getSubTupelOfTuple :: (Char, (Char, Float)) -> (Char, Float)
+    getSubTupelOfTuple tup = snd (tup)
+
+    makeListOfTuple :: [(Char, (Char, Float))] -> [(Char, Float)]
+    makeListOfTuple xs = fmap getSubTupelOfTuple xs
+
+    --makeTupleOfCharAndListOfTuple :: [(Char, (Char, Float))] -> (Char, [(Char, Float)])
+    --makeTupleOfCharAndListOfTuple xs = (getKeyOfTuple xs, makeListOfTuple xs)
+
+    makeCharTupleListTuple :: [(Char, (Char, Float))] -> (Char, [(Char, Float)])
+    makeCharTupleListTuple a = (getKeyOfTuple a, makeListOfTuple a)
+
+--    kummulatesLittleHelper :: [[(Char, (Char, Float))]] -> [(Char, Float)]
+--    kummulatesLittleHelper [[(key1, (key2, flo))]] = [(key2, flo)]
 
     openFile :: String -> IO ()
     openFile fileName = do
@@ -68,6 +92,7 @@ module Lib where
       let swapped = map swapTupleValues grouped
       let changed = map (changeIntTupleToFloat charCounts) (swapped)
       let groupedTuples = groupTupleLists changed
+
       --let allAdded = map kummulate groupedTuples
       --print allAdded
       print groupedTuples
@@ -89,3 +114,14 @@ module Lib where
 
     incrementOccurences :: Key -> Key -> Alphabet -> Occurences
     incrementOccurences key1 key2 alph = M.insert key1 ((getOccurence key1 (getOccurences key2 alph)) + 1) (getOccurences key2 alph)
+
+    --tenPseudorandomNumbers :: Int -> [Int]
+    --tenPseudorandomNumbers = take 10 . randomRs (0, 99) . mkStdGen $ newStdGen
+
+--    getRandomNumberOneTo :: Int
+    getRandomNumberOneTo = randomRIO (1,1000) :: IO Int
+
+--    getRandomNumber :: Float
+--    getRandomNumber = do
+--      num <- randomIO :: IO Float
+--      return (myPureFunction num)
