@@ -82,7 +82,7 @@ module Lib where
     --makeTupleOfCharAndListOfTuple xs = (getKeyOfTuple xs, makeListOfTuple xs)
 
     makeCharTupleListTuple :: [(Char, (Char, Float))] -> (Char, [(Char, Float)])
-    makeCharTupleListTuple a = (getKeyOfTuple a, makeListOfTuple a)
+    makeCharTupleListTuple a = (getKeyOfTuple a, kummulate(makeListOfTuple a))
 
 --    kummulatesLittleHelper :: [[(Char, (Char, Float))]] -> [(Char, Float)]
 --    kummulatesLittleHelper [[(key1, (key2, flo))]] = [(key2, flo)]
@@ -97,11 +97,16 @@ module Lib where
       let swapped = map swapTupleValues grouped
       let changed = map (changeIntTupleToFloat charCounts) (swapped)
       let groupedTuples = groupTupleLists changed
+      let optimizedList = optimizeList groupedTuples
+      generateText 1000 'E' optimizedList
+
+      return ()
 
       --let allAdded = map kummulate groupedTuples
       --print allAdded
       --print groupedTuples
-      return (Just groupedTuples)
+      --return (Just groupedTuples)
+
 
     readChars :: Int -> String -> Alphabet-> Occurences
     readChars index content alph = incrementOccurences (content!!index) (content!!(index+1)) alph
@@ -131,3 +136,44 @@ module Lib where
 --    getRandomNumber = do
 --      num <- randomIO :: IO Float
 --      return (myPureFunction num)
+
+    optimizeList :: [[(Char, (Char, Float))]] -> [(Char, [(Char, Float)])]
+    optimizeList list = do
+      let originalListe = list
+      fmap makeCharTupleListTuple originalListe
+
+    generateText :: Int -> Char -> [(Char, [(Char, Float)])] -> IO ()
+    generateText count start dat = do
+      let ganzcharTupleListTuple = (filter (\tup -> fst tup == start) dat)!!0
+      ranNum <- getRandomNumberOneTo
+      let limit = ((fromIntegral ranNum) / 1000)
+      let tmpList1 = (filter (\tup -> snd tup >= limit) (snd ganzcharTupleListTuple))
+
+      let tmpList2 = (filter (\tup -> snd tup >= 0) (snd ganzcharTupleListTuple))
+
+      let verbliebeneListe | (length tmpList1) == 0 = tmpList2 | otherwise = tmpList1
+
+      let konkretesTupel = head verbliebeneListe
+      let konkreterCharakter = fst konkretesTupel
+
+
+      if (count > 0)
+        then do
+          print konkreterCharakter
+          --print dat
+          (generateText (count-1) konkreterCharakter dat)
+        else print ""
+
+
+      --if count <= 0
+        --then ([konkreterCharakter] ++ (generateText (count-1) konkreterCharakter dat))
+        --else [konkreterCharakter] ++ []
+
+
+    {-|
+    getRandNum :: IO Int
+    getRandNum = do
+          ranNum <- getRandomNumberOneTo
+          let limit = ((fromIntegral ranNum) / 1000)
+          return limit
+    -}

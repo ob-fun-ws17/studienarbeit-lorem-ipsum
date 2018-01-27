@@ -70,6 +70,8 @@ mainTestGetTuple = do
   print "Liste umgebaut von [[(Char, (Char, Float))]] nach [(Char, [(Char, Float)])] - nochmal formatiert"
   mapM_ print charTupleListTuple
 
+
+
   let ganzcharTupleListTuple = (filter (\tup -> fst tup == 'B') charTupleListTuple)!!0
   putStr emptyLine
   print "Das relevante Tupel der Liste, unter der Annahme, dass der letzte Eintrag / Buchstabe ein 'B' ist"
@@ -98,6 +100,8 @@ mainTestGetTuple = do
   let message = "Der konkrete Charakter (hier: " ++ konkreterCharakter : [] ++ ")"
   print message
   print konkreterCharakter
+
+
 
   putStr emptyLine
   print "----- Ende der Zauberei -------------------"
