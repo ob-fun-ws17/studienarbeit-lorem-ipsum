@@ -1,3 +1,8 @@
+{-|
+Module      : Lorem Ipsum Module
+Description : Contains all functions
+Maintainer  : Hübner Martin, Seeholzer Florian
+-}
 module Lib where
 
     import System.IO
