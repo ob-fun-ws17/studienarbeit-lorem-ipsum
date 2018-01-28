@@ -1,6 +1,6 @@
 {-|
-Module      : Lorem Ipsum Module
-Description : Contains all functions
+Module      : Lib
+Description : Contains all functions. Generates a Lorem-Ipsum text based on random numbers.
 Maintainer  : Hübner Martin, Seeholzer Florian
 -}
 module Lib where
@@ -19,38 +19,49 @@ module Lib where
     type Alphabet      = M.Map Letter Occurences
 
     occurences = initOccurences
-    alphabet = initAlphabet
 
+    -- | Initializes a new (inner) list of Char, Int tuples.
     initOccurences :: Occurences
     initOccurences = foldr(uncurry M.insert) M.empty $ zip ['A'..'Z'] $ repeat 0
 
+    -- | Initializes a new (outer) list of Char, Occurences tuples.
     initAlphabet :: Alphabet
     initAlphabet = foldr(uncurry M.insert) M.empty $ zip ['A'..'Z'] $ repeat initOccurences
 
+    -- | Used to get the number of all occurences of an datatype.
     frequency :: (Ord a) => [a] -> [(a, Int)]
     frequency xs = M.toList (M.fromListWith (+) [(x, 1) | x <- xs])
 
+    -- | Used by getCharCountValue to get the number of occurences from a specific character.
     lookup :: Char -> [(Char,Int)] -> Int
     lookup x zs = (head [b | (a,b) <- zs, (a==x)])
 
+    -- | Returns the number of occurences from a specific character.
     getCharCountValue :: Char -> [(Char, Int)] -> Int
     getCharCountValue key  freqList = Lib.lookup key freqList
 
+    -- | Swaps the three values of a tuple of tuples.
     swapTupleValues :: ((Char, Char), Int) -> (Char, (Char, Int))
     swapTupleValues ((a, b), c) = (a, (b, c))
 
+
+    -- | Changes the old list with int occurences to a new list with float percentages (0.0 - 1.0).
     changeIntTupleToFloat :: [(Char, Int)] -> (Char,(Char, Int)) -> (Char,(Char, Float))
     changeIntTupleToFloat freqList (a, (b, c)) = (a,(b, (fromIntegral c) / (fromIntegral (getCharCountValue a freqList))))
 
+    -- | Counts the occurences of a char value in a string.
     countLetters :: String -> Char -> Int
     countLetters str c = length $ filter (== c) str
 
+    -- | Prints a tuple after the occurence count has been changed to the percentages (0.0 - 1.0).
     printFloatTuple :: (Char, (Char, Float)) -> String
     printFloatTuple (a, (b, c)) = charToString a ++ " " ++ charToString b ++ " " ++ show c
 
+    -- | Changes the list's structure.
     groupTupleLists :: [(Char, (Char, Float))] -> [[(Char, (Char, Float))]]
     groupTupleLists list = groupBy (\a b -> fst a == fst b) list
 
+    -- | Each character has it's own 'area' between 0.0 and 1.0. This is used to ensure better result from our randomizer.
     kummulate :: [(Char, Float)] -> [(Char, Float)]
     kummulate xs = do
       let headXs = head xs
@@ -59,35 +70,37 @@ module Lib where
       then xs
       else headXs : kummulate((kummulateAddNumber (head tailXs) (snd headXs)) : tail tailXs)
 
+    -- | Returns the sum of both tuple values and another value.
     kummulateAddNumber :: (Char, Float) -> Float -> (Char, Float)
     kummulateAddNumber tup num = (fst tup, snd tup + num)
 
+    {-
     separate :: [[(Char, (Char, Float))]] -> Char
     separate xs = do
       if length xs <= 1 then
         getKeyOfTuple $ head xs
       else
         separate $ tail xs
+    -}
 
+    -- | Gets the key of a tuple.
     getKeyOfTuple :: [(Char, (Char, Float))] -> Char
     getKeyOfTuple xs = fst (xs!!0)
 
+    -- | Gets the inner tuple of a tuple.
     getSubTupelOfTuple :: (Char, (Char, Float)) -> (Char, Float)
     getSubTupelOfTuple tup = snd (tup)
 
+    -- | Changes the list to a list of tuples.
     makeListOfTuple :: [(Char, (Char, Float))] -> [(Char, Float)]
     makeListOfTuple xs = fmap getSubTupelOfTuple xs
 
-    --makeTupleOfCharAndListOfTuple :: [(Char, (Char, Float))] -> (Char, [(Char, Float)])
-    --makeTupleOfCharAndListOfTuple xs = (getKeyOfTuple xs, makeListOfTuple xs)
-
+    -- | Changes the list of tuples a tuples with a list as the second argument.
     makeCharTupleListTuple :: [(Char, (Char, Float))] -> (Char, [(Char, Float)])
     makeCharTupleListTuple a = (getKeyOfTuple a, kummulate(makeListOfTuple a))
 
---    kummulatesLittleHelper :: [[(Char, (Char, Float))]] -> [(Char, Float)]
---    kummulatesLittleHelper [[(key1, (key2, flo))]] = [(key2, flo)]
-
-    --openFile :: String -> [[(Char, (Char, Float))]]
+    -- | Used to start the whole process.
+    openFile :: String -> IO ()
     openFile fileName = do
       content <- readFile "LoremIpsum.txt"
       let content' = map toUpper $ filter isAlpha content
@@ -100,48 +113,20 @@ module Lib where
       let optimizedList = optimizeList groupedTuples
       generateText "" 1000 'E' optimizedList
 
-      return ()
-
-      --let allAdded = map kummulate groupedTuples
-      --print allAdded
-      --print groupedTuples
-      --return (Just groupedTuples)
-
-
-    readChars :: Int -> String -> Alphabet-> Occurences
-    readChars index content alph = incrementOccurences (content!!index) (content!!(index+1)) alph
-
+    -- | Changes a char to a string.
     charToString :: Char -> String
     charToString c = [c]
 
-    printXs :: String -> IO()
-    printXs xs = do putStrLn xs
-
-    getOccurence :: Key -> Occurences -> Integer
-    getOccurence key occ = M.findWithDefault 0 key occ
-
-    getOccurences :: Key -> Alphabet -> Occurences
-    getOccurences key alph = M.findWithDefault occurences key alph
-
-    incrementOccurences :: Key -> Key -> Alphabet -> Occurences
-    incrementOccurences key1 key2 alph = M.insert key1 ((getOccurence key1 (getOccurences key2 alph)) + 1) (getOccurences key2 alph)
-
-    --tenPseudorandomNumbers :: Int -> [Int]
-    --tenPseudorandomNumbers = take 10 . randomRs (0, 99) . mkStdGen $ newStdGen
-
---    getRandomNumberOneTo :: Int
+    -- | Returns a random Int (1-1000).
     getRandomNumberOneTo = randomRIO (1,1000) :: IO Int
 
---    getRandomNumber :: Float
---    getRandomNumber = do
---      num <- randomIO :: IO Float
---      return (myPureFunction num)
-
+    -- | Changes the list's structure for further use.
     optimizeList :: [[(Char, (Char, Float))]] -> [(Char, [(Char, Float)])]
     optimizeList list = do
       let originalListe = list
       fmap makeCharTupleListTuple originalListe
 
+    -- | Generates a text based on random numbers and the occurence values of the characters.
     generateText :: String -> Int -> Char -> [(Char, [(Char, Float)])] -> IO ()
     generateText result count start dat = do
       let ganzcharTupleListTuple = (filter (\tup -> fst tup == start) dat)!!0
@@ -156,22 +141,7 @@ module Lib where
       let konkretesTupel = head verbliebeneListe
       let konkreterCharakter = fst konkretesTupel
 
-
       if (count > 0)
         then do
           (generateText (result ++ [konkreterCharakter]) (count-1) konkreterCharakter dat)
         else print result
-
-
-      --if count <= 0
-        --then ([konkreterCharakter] ++ (generateText (count-1) konkreterCharakter dat))
-        --else [konkreterCharakter] ++ []
-
-
-    {-|
-    getRandNum :: IO Int
-    getRandNum = do
-          ranNum <- getRandomNumberOneTo
-          let limit = ((fromIntegral ranNum) / 1000)
-          return limit
-    -}

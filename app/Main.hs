@@ -1,27 +1,22 @@
+{-|
+Module      : Main
+Description : Starts the Lorem-Ipsum-Generator
+Maintainer  : Hübner Martin, Seeholzer Florian
+-}
 module Main where
 
 import Lib
 
-
---import Data.Array.IO
 import System.IO (hSetBuffering, BufferMode(NoBuffering), stdout)
 main :: IO ()
 main = do
-  putStr "Geben Sie bitte einen Dateinamen an: "
-  fileName <- getLine
-  content <- openFile fileName
-  print content
-  putStrLn (" Die Datei " ++ fileName ++ " soll geoeffnet werden.")
---  hSetBuffering stdout NoBuffering
+  putStrLn ""
+  content <- openFile "fileName"
+  putStrLn ""
 
-mainA :: Occurences
-mainA = do
-  let alphabet = initAlphabet
-  incrementOccurences 'A' 'A' alphabet
 
 mainTest :: IO ()
 mainTest = do
-  --let a = [('A', ('Z', 2.0)), ('A', ('P', 3.0)), ('A', ('A', 7.0)), ('A', ('K', 11.0)), ('A', ('N', 13.0)), ('A', ('M', 17.0)), ('A', ('I', 19.0)), ('A', ('C', 23.0)), ('A', ('H', 29.0))]
   let a = [('A', ('Z', 2.0)),  ('A', ('A', 7.0)), ('A', ('K', 11.0)), ('A', ('N', 13.0)), ('A', ('M', 17.0)), ('A', ('I', 19.0)), ('A', ('C', 23.0)), ('A', ('H', 29.0))]
   let b = [('B', ('Z', 2.0)), ('B', ('P', 3.0)), ('B', ('A', 7.0)), ('B', ('K', 11.0)), ('B', ('N', 13.0)), ('B', ('M', 17.0)), ('B', ('I', 19.0)), ('B', ('C', 23.0)), ('B', ('H', 29.0))]
   let c = [('C', ('Z', 2.0)), ('C', ('P', 3.0)), ('C', ('A', 7.0)), ('C', ('K', 11.0)), ('C', ('N', 13.0)), ('C', ('M', 17.0)), ('C', ('I', 19.0)), ('C', ('C', 23.0)), ('C', ('H', 29.0))]
@@ -32,9 +27,6 @@ mainTest = do
   print "---"
   print abc
   print "---"
-  --print (kummulate a)
-  --let separated = separate abc
-  --print $ separated
 
 mainTestGetTuple :: IO ()
 mainTestGetTuple = do
@@ -49,7 +41,6 @@ mainTestGetTuple = do
 
   print "----- Beginn der Zauberei -------------------"
 
-  --let originalListe = [a,b,c]
   originalListe <- openFile ""
   print originalListe
   let originalListe = [a,b,c]
@@ -79,7 +70,6 @@ mainTestGetTuple = do
 
   putStr emptyLine
   print "Der Zufallswert:"
-  --let randNum = tenPseudorandomNumbers
   ranNum <- getRandomNumberOneTo
   let limit = ((fromIntegral ranNum) / 1000)
   print limit
@@ -100,8 +90,6 @@ mainTestGetTuple = do
   let message = "Der konkrete Charakter (hier: " ++ konkreterCharakter : [] ++ ")"
   print message
   print konkreterCharakter
-
-
 
   putStr emptyLine
   print "----- Ende der Zauberei -------------------"
