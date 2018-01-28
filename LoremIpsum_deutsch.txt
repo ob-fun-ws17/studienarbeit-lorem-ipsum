@@ -1,0 +1,37 @@
+Lorem ipsum
+
+„Lorem ipsum“ in der Schriftart Helvetica
+„Lorem ipsum dolor sit amet, consectetur adipisici elit, …“ ist ein Blindtext, der nichts bedeuten soll, sondern als Platzhalter im Layout verwendet wird, um einen Eindruck vom fertigen Dokument zu erhalten. Die Verteilung der Buchstaben und der Wortlängen des pseudo-lateinischen Textes entspricht in etwa der natürlichen lateinischen Sprache. Der Text ist absichtlich unverständlich, damit der Betrachter nicht durch den Inhalt abgelenkt wird.
+
+Inhaltsverzeichnis [Verbergen] 
+1	Historische Herkunft
+2	Beispiel
+3	Weblinks
+4	Einzelnachweise
+5	Gesprochene Version
+Historische Herkunft[Bearbeiten | Quelltext bearbeiten]
+Der Text selbst ist kein richtiges Latein, schon das erste Wort „Lorem“ existiert dort nicht. Dennoch erkennt man im Text eine Reihe lateinischer Wörter, die aus dem sehr ähnlichen Absatz 1.10.32 bis 1.10.33 aus Ciceros De finibus bonorum et malorum[1] stammen:[2]
+
+„Neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit […].“
+
+„Ferner gibt es auch niemanden, der den Schmerz um seiner selbst willen liebt, der ihn sucht und haben will, einfach, weil es Schmerz ist […].“
+
+Über die Herkunft des Textes lässt sich keine Klarheit mehr gewinnen. Auch sonst finden sich viele leicht voneinander abweichende Varianten dieses Textes.
+
+Wurden zunächst die wenigen Zeilen von „Lorem ipsum“ im Blindtext fortlaufend wiederholt, so dient heute der Cicero-Text als Basis vieler Lorem-ipsum-Generatoren, die darauf aufbauend längere Abschnitte erzeugen. Die Wortfolge ist so weithin üblich, dass viele Desktop-Publishing-Programme einen Menüpunkt für Blindtext haben, der eine Sequenz erzeugt, die mit „Lorem ipsum“ beginnt. Außerdem wird heute die Wortfolge „Lorem ipsum“ in der elektronischen Druckaufbereitung erkannt und eine Warnmeldung ausgegeben, damit eine Publikation mit verbliebenem Blindtext nicht versehentlich in den Druck geht. Für den Textsatz mit LaTeX gibt es Ergänzungspakete,[3] auch Microsoft Word hat eine Funktion[4] zur Erzeugung des Blindtextes eingebaut. Derartige Blindtexte werden häufig von Webseitenentwicklern genutzt, um Kunden Prototypen ihrer in Auftrag gestellten Seiten zeigen zu können.
+
+Beispiel[Bearbeiten | Quelltext bearbeiten]
+Der erste Absatz besteht in einer gängigen Form aus folgenden Wörtern:
+
+Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Weblinks[Bearbeiten | Quelltext bearbeiten]
+ Wikisource: Lorem ipsum – Quellen und Volltexte
+ Commons: Lorem ipsum – Sammlung von Bildern, Videos und Audiodateien
+Ciceros Originaltext De finibus bonorum et malorum, Erstes Buch
+Vertonte Fassung – Im Podcast »Die Esel und Teddy Show« wurde der Lorem-ipsum-Text als Hörspiel vertont
+Einzelnachweise[Bearbeiten | Quelltext bearbeiten]
+Hochspringen ↑ De Finibus Bonorum et Malorum („Vom höchsten Gut und vom größten Übel“), Liber primus, 32–33
+Hochspringen ↑ "What does the filler text "lorem ipsum" mean?", Cecil Adams, The Straight Dope, Februar 2001, Webseite: SDope-lorem.
+Hochspringen ↑ Vgl. Patrick Happel, lipsum, sowie Knut Lickert, blindtext, abgerufen am 24. Januar 2011.
+Hochspringen ↑ Einfügen von Beispieltext in ein Word-Dokument. Methode 3: Verwenden von "lorem()". Microsoft, 27. Mai 2010, abgerufen am 11. April 2013.

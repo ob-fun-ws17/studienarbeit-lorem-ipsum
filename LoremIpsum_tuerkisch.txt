@@ -1,0 +1,35 @@
+Lorem Ipsum
+Vikipedi, özgür ansiklopedi
+
+Lorem Ipsum sayfa tasarımında örnek yazı olarak.
+Lorem Ipsum, masaüstü yayıncılık ve basın yayın sektöründe kullanılan taklit yazı bloğu olarak tanımlanır. Lipsum, oluşturulacak şablon ve taslaklarda içerik yerine geçerek yazı bloğunu doldurmak için kullanılır.
+
+Lipsum, 1500'lerin başlarında bir matbaacının font model kitabı oluşturmak için, bir yazı tipi kütüphanesindeki harflerin sıralamasını bozarak yerleştirdiğinden bu yana endüstri standardı haline gelmiştir.
+
+İçindekiler  [gizle] 
+1	Bu nedir?
+2	Neden Lorem Ipsum kullanılır?
+3	Dış bağlantılar
+4	Kaynakça
+Bu nedir?[değiştir | kaynağı değiştir]
+Lorem Ipsum, 500 yıl boyunca varlığını sürdürmekle kalmamış ve günümüzde elektronik yazı tipinin gerektiği birçok konuda hazır bir araç olarak kullanılmaya başlanmıştır. Lipsum 1960'larda içinde Lorem Ipsum paragraflarının bulunduğu letrasetlerin piyasaya çıkması ve 1990'larda Lorem Ipsum versiyonlarını içeren Aldus Pagemaker gibi programlarla beraber yaygın hale gelmiştir.
+
+Bilinenin aksine, Lipsum sadece rastgele dizilmiş harflerden oluşan paragraflardan ibaret değildir, tarihi MÖ 45 yıllarına dayanan bir klasik Latin edebiyatı eserine dayanır. Yaklaşık 2000 yıldan fazla bir geçmişi vardır. ABD Virjinya'daki Hampden-Sydney Üniversitesi'nden(en:Hampden–Sydney College) Latin dili profesörü Richard McClintock, Lorem Ipsum paragraflarından birinde anlaşılması en güç Latince kelimelerden bir "consectetur" sözcüğüne rastlamış, klasik Latin edebiyatı eserlerinde de gördüğü bu kelimeden hareketle Lipsum’un aslında işe yarar bir kaynak olduğunu farketmiştir.
+
+Lorem Ipsum, Çiçero'nun MÖ 45 yılında yazdığı "de Finibus Bonorum et Malorum – İyi ve Kötünün Uç Sınırları" eserindeki 1.30.32 sayılı paragrafında yer alır. Bu eser Rönesans döneminde etik teorileri üzerine bilimsel inceleme konusu haline gelmiştir.
+
+Lorem Ipsum 1500'lü yıllardan itibaren aşağıdaki formuyla standartlaşmıştır:
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Neden Lorem Ipsum kullanılır?[değiştir | kaynağı değiştir]
+Bu alt başlık {{{1}}} tarihinden beri geliştirilmeye ihtiyaç duyuyor.	Bu alt başlığın geliştirilmesi gerekiyor.
+Uzun süren çözümlemeler sonrası anlaşılmıştır ki bir çalışma taslağı veya şablonuna bakarken taslağın barındığı içeriğin anlamının etkisiyle okuyucunun dikkati dağılır. Lorem Ipsum ise, "buraya içerik gelecek, buraya içerik gelecek" kısmının yerine konularak, bir düzen halinde sembolik içerik olarak yerleştirildiğinden gerçek içeriğe daha yakın bir sonuç verir. Günümüzde pek çok masaüstü yazılımı ve web tasarımcısı örnek yazı için Lorem Ipsum kullanmaktadır.
+
+Dış bağlantılar[değiştir | kaynağı değiştir]
+Türkçe lorem ipsum generator Türkçe anlamsız yazılar, lorem ipsum üretici
+Lipsum.com
+Lorem Ipsum generator (Birçok dil ve charsets ile)
+Lipsum Javascript ile desteklenmiş hızlı Lorem İpsum oluşturucu
+Kaynakça[değiştir | kaynağı değiştir]
+3 kategori: Masaüstü yayıncılıkYazıLatince deyişler
